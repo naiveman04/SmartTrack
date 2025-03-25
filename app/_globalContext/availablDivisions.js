@@ -1,0 +1,1 @@
+export const divsionArray = ["TE1", "TE2", "TE3", "TE4", "TE5", "TE6", "TE7"]
