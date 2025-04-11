@@ -26,45 +26,30 @@ export async function fetchDivisionGeneralDataAPI() {
   }
 }
 
-export async function addNewDivisionAPI(divisionData) {
-  
-  const { division, subjects } = divisionData;
-
+// add new subject
+export async function addNewSubjectAPI(subject, division) {
   try {
-    //**Validation checks**
-    if (!division || division.trim() === "") {
+    if (!subject?.trim()) {
       return {
         success: false,
-        message: "Division name is required.",
-      };
-    }    
-
-    if (!subjects || !Array.isArray(subjects) || subjects.length === 0) {
-      return {
-        success: false,
-        message: "At least one subject must be added.",
+        message: "Subject is required",
       };
     }
 
-    // **Make POST request**
-    const { data } = await axios.post(`api/admin/${division}`, {
-      division,
-      subjects,
-    });
-
-    console.log(data);
+    const response = await axios.patch(`/api/admin/${division}`, { subject });
+    console.log(response);
     
     return {
-      success: true,
-      message: "Division added successfully!",
-      data,
+      success: response.status === 200,
+      message: response?.data?.message || 
+               (response.status === 200 ? "Subject added successfully" : "Try again"),
     };
   } catch (error) {
     return {
       success: false,
       message:
         error.response?.data?.message ||
-        "An error occurred while adding the division.",
+        "An error occurred while adding the subject.",
     };
   }
 }

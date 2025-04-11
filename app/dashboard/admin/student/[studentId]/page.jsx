@@ -14,7 +14,6 @@ const EditPage = () => {
     selectedStudent,
     setSelectedStudent,
     selectedDivision,
-    setSelectedDivision,
   } = useTemporaryData();
   const [action, setAction] = useState("Update");
   const [message, setMessage] = useState("");
@@ -105,7 +104,7 @@ const EditPage = () => {
 
 export default EditPage;
 
-// Update Student Form Structure
+// ------------------------------------- Update Student Form Structure -----------------------------------------------
 export function UpdateStudent({ selectedStudent, setSelectedStudent }) {
   const { id, rollNo, name } = selectedStudent;
 
@@ -149,7 +148,7 @@ export function UpdateStudent({ selectedStudent, setSelectedStudent }) {
   );
 }
 
-// Delete Student Form Structure
+// ------------------------------------------ Delete Student Form Structure ---------------------------------------------
 export function DeleteStudent({ selectedStudent }) {
   const { id, rollNo, name } = selectedStudent;
   return (

@@ -17,6 +17,8 @@ export async function POST(request, { params }) {
   try {
     const { subjects } = await request.json();
     const { division } = await params;
+    console.log(subjects, division);
+    
     // Validate input
     if (
       !division ||
@@ -71,18 +73,12 @@ export async function POST(request, { params }) {
 
 // ✅ add subject
 export async function PATCH(request, { params }) {
-  const { adminKey, subject } = await request.json();
+  
+  const { subject } = await request.json();
   const { division } = await params;
 
   if (!division || !subject) {
     return NextResponse.json({ message: "Missing Fields" }, { status: 400 });
-  }
-
-  if (!adminKey || adminKey !== process.env.ADMIN_KEY) {
-    return NextResponse.json(
-      { message: "Not Authororized Person" },
-      { status: 400 }
-    );
   }
 
   try {
@@ -127,42 +123,6 @@ export async function PATCH(request, { params }) {
     });
   }
 }
-
-//✅ Delete Subject From Division
-// export async function DELETE(request) {
-//   try {
-//     const { division, adminKey } = await request.json();
-
-//     if (!division) {
-//       return NextResponse.json(
-//         { message: "Division is required!" },
-//         { status: 400 }
-//       );
-//     }
-
-//     if (adminKey !== process.env.ADMIN_KEY) {
-//       return NextResponse.json(
-//         { message: "Not Authororized Person" },
-//         { status: 400 }
-//       );
-//     }
-
-//     // Delete Subject and Students
-//     const studentsRef = doc(db, "students", division);
-//     await deleteDoc(studentsRef);
-
-//     // 🔹 Realtime Database: Delete session data
-//     const sessionRef = ref(realtimeDb, `session/${division}`);
-//     await remove(sessionRef);
-
-//     return NextResponse.json(
-//       { message: `Division ${division} deleted successfully!` },
-//       { status: 200 }
-//     );
-//   } catch (error) {
-//     return NextResponse.json({ message: error.message }, { status: 500 });
-//   }
-// }
 
 // ✅ GEt all Divisions Genearl Data (division, subjects)
 export async function GET(request) {

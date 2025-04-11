@@ -67,16 +67,16 @@ export async function POST(request, { params }) {
 // ✅ Update Student From Division
 export async function PATCH(request, { params }) {
   const { division } = await params;
-  const { rfidNumber, name, rollNo } = await request.json();
+  const { id, name, rollNo } = await request.json();
 
-  if (!rfidNumber || !division) {
+  if (!id || !division) {
     return NextResponse.json({
       status: 400,
       message: "Missing teacher ID",
     });
   }
   try {
-    const studentRef = doc(db, `students/${division}/records/${rfidNumber}`);
+    const studentRef = doc(db, `students/${division}/records/${id}`);
     const studentSnap = await getDoc(studentRef);
 
     if (!studentSnap.exists()) {

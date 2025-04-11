@@ -35,6 +35,7 @@ export async function updateStudentAPI(selectedStudent, division) {
       `/api/admin/${division}/records`,
       selectedStudent
     );
+ 
 
     if (response.status !== 200) {
       return {
