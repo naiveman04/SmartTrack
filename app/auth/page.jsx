@@ -25,10 +25,12 @@ function Page() {
     setLoading(true);
     try {
       const result = await TeacherAuth(loginFormData);
-      
+
       if (result.success) {
         setDisplayMessage(result.message);
-        setTimeout(() => router.push('/dashboard/home'), 2000)
+        setTimeout(() => {
+          window.location.href = "/dashboard/home";
+        }, 1000);
       } else {
         setDisplayMessage(result.message);
       }
