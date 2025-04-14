@@ -97,7 +97,3 @@ export async function PATCH(request) {
   }
 }
 
-// ✅ From firestore Division General Data (USE FOR SESSION CARDS)
-export async function GET(request) {
-  
-}

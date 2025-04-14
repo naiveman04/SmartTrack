@@ -61,6 +61,7 @@ export async function PATCH(request, { params }) {
 }
 
 // ReturnsDivision Wise Class Attendance from FireStore
+// Returns Division Wise Class Attendance from FireStore
 export async function GET(request, { params }) {
   try {
     const { division } = await params;
@@ -73,7 +74,6 @@ export async function GET(request, { params }) {
       );
     }
 
-    // Fetch student records
     // Fetch division metadata
     const divisionRef = doc(db, "students", division);
     const divisionSnapShot = await getDoc(divisionRef);
@@ -106,6 +106,9 @@ export async function GET(request, { params }) {
       id: doc.id,
       ...doc.data(),
     }));
+
+    // Sort students based on roll number (assuming roll number is present as 'rollNo')
+    students.sort((a, b) => a.rollNo - b.rollNo); // Adjust 'rollNo' based on the actual field name in your Firestore data
 
     return new NextResponse(JSON.stringify({ data: { subjects, students } }), {
       status: 200,

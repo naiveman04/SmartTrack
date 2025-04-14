@@ -93,7 +93,6 @@ export async function fetchLiveAttendanceAPI(division, callback) {
   return () => off(sessionRef);
 }
 
-
 // Fetch Division Attendance from FireStore
 export async function fetchAttendanceAPI(division) {
   try {
@@ -115,7 +114,6 @@ export async function fetchAttendanceAPI(division) {
     };
   }
 }
-
 
 export async function removeStudent(division, id) {
   console.log("Deleting student:", division, id);
