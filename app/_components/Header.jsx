@@ -37,7 +37,7 @@ function Header() {
         href="/"
         className="text-3xl font-extrabold text-darkPurple tracking-wide relative"
       >
-        Campuscheck
+        SmartTrack
         <span className="absolute left-0 top-full h-1 w-full bg-darkPurple scale-x-0 hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
       </Link>
 
